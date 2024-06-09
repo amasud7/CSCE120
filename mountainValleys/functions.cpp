@@ -70,5 +70,17 @@ void count_valid_mv_numbers(int a, int b) {
 	// TODO(student): count the number of valid mountain ranges and valley
 	// ranges in the range [a, b] and print out to console using the format
 	// in Requirement 4 of the homework prompt
-	
+	char check;
+	int mcount = 0;
+	int vcount = 0;
+	for (int i = a; i <= b; i++) {
+		check = classify_mv_range_type(i);
+		if (check == 'M') {
+			mcount++;
+		}
+		else if (check == 'V') {
+			vcount++;
+		}
+	}
+	cout << "There are " << mcount << " mountain ranges and " << vcount << " valley ranges between " << a << " and " << b << "." << endl;
 }
