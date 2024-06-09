@@ -13,16 +13,17 @@ int main() {
 	do {
 		cout << "Enter numbers 10 <= a <= b < 10000: ";
 		cin >> a >> b;
-		if ((a >= 0) && (b >= 0)) {
+
+		if (is_valid_range(a, b)) {
 			pos = true;
 		}
-		// implement alternating digits??
-		if (pos) {
+
+		if (!pos) {
 			cout << "Invalid Input" << endl;
 		}
 	} while (!pos);
 
 	// TODO(student): compute and display solution
-	
+	count_valid_mv_numbers(a, b);
 	return 0;
 }
