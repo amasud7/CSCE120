@@ -2,11 +2,12 @@
 using namespace std;
 
 int main() {
-   int a = 0 ;
-   int b = 0;
-   cout << "enter 2 number: ";
-   cin >> a >> b;
-   cout << a << " " << b;
-
+   int size = 0;
+   int number = 12345;
+   while (number != 0) {
+      number /= 10;
+      size++;
+   }
+   cout <<  size;
    return 0;
 }
