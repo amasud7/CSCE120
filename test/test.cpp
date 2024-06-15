@@ -1,13 +1,14 @@
 #include <iostream>
 using namespace std;
+const unsigned int SIZE = 9;
+
 
 int main() {
-   int size = 0;
-   int number = 12345;
-   while (number != 0) {
-      number /= 10;
-      size++;
+   double ary[SIZE] = {};
+   // prep_double_array(ary);
+
+   for (unsigned int i = 0 ; i < SIZE; i++) {
+      cout << ary[i];
    }
-   cout <<  size;
    return 0;
 }
