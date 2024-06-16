@@ -47,13 +47,17 @@ int main()
 
 
     // TODO: load the runner's data into the array
+    bool loaded = get_runner_data(time, country, uniNum, name);
 
     // if unable to load runner data
     //   1) output "Bad input" to standard out
     //   2) exit program by returning 1
+    if (!loaded) {
+        cout << "Bad input";
+    }
 
     // TODO: determine ranking, notice the rank array receives the results
-
+    
     // TODO: Output results
 
     // this is not required in C++ but many people still explitly add it

@@ -83,9 +83,45 @@ void trim(char str[STRING_SIZE]) {
 // PostCondition: all arrays contain data from standard in
 //---------------------------------------------------------
 bool get_runner_data(double timeArray[], char countryArray[][STRING_SIZE], 
-		unsigned int numberArray[], char lastnameArray[][STRING_SIZE]) 
-{
+		unsigned int numberArray[], char lastnameArray[][STRING_SIZE]) {
   //TODO
+  //validate data
+	for (int i = 0; i < SIZE; i++) {
+		cin >> timeArray[i] >> countryArray[i] >> numberArray[i] >> lastnameArray[i];
+
+		if (timeArray[i] <= 0) {
+			return false;
+		}
+
+		if ((numberArray[i] <= 0) || (numberArray[i] > 99)) {
+			return false;
+		}
+
+		int count = 0;
+		for (int j = 0; j < strlen(countryArray[i]); j++) {
+			count++;
+			if ((!(isupper(countryArray[i][j]))) || (!(isalpha(countryArray[i][j])))) {
+				return false;
+			}
+		}
+		if (count != 3) {
+			return false;
+		}
+
+		trim(lastnameArray[i]);
+		if (strlen(lastnameArray[i]) > 1) {
+			for (int k = 0; k < strlen(lastnameArray[i]); k++) {
+				if ((!(isalpha(lastnameArray[i][k])))) {
+					if ((!(isspace(lastnameArray[i][k])))) {
+						return false;
+					}
+				}
+			}
+		}
+		else {
+			return false;
+		}
+	}
   return true; // set so it will compile
 }
 
