@@ -57,9 +57,9 @@ int main()
     }
 
     // TODO: determine ranking, notice the rank array receives the results
-    
+    get_ranking(time, rank);
     // TODO: Output results
-
+    print_results(time, country, name, rank);
     // this is not required in C++ but many people still explitly add it
     return 0; 
 }

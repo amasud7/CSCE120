@@ -1,72 +1,81 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
-// const unsigned int SIZE = 9;
-const unsigned int STRING_SIZE = 51;
+const unsigned int SIZE = 9;
+//const unsigned int STRING_SIZE = 51;
 
-void trim(char str[STRING_SIZE]) {
-	// TODO
-   // find first character
-   int i = 0;
-   while ((str[i] == ' ') || (str[i] == '\t')) {
-      i++;
-   }
 
-   // find last character
-   int j = strlen(str) - 1;
-   while ((str[j] == ' ') || (str[j] == '\t')) {
-      j--;
-   }
+void prep_unsigned_int_array(unsigned int ary[])
+// making sure all values within the array are set to 0;
+{
+  //TODO
+  for (unsigned int i = 0; i < SIZE; i++) {
+	ary[i] = 0;
+  }
+}
 
-   // create new string
-   int x;
-   for (x = 0; i < j+1; x++) {
-      str[x] = str[i];
-      i++;
-   }
+void get_ranking(const double timeArray[], unsigned int rankArray[]) {
+	//TODO
+	int min;
+	int place = 1;
+	unsigned int j;
+	int temp = 0;
+	bool check = false;
+	for (unsigned int c = 0; c < SIZE; c++) {
+		for (unsigned int i = 0; i < SIZE; i++) {
+			min = timeArray[i];
+			for (j = 0; j < SIZE; j++) {
+				if (rankArray[j] == 0) {
+					if ((timeArray[j] <= min)) {
+						min = timeArray[j];
+						temp = j;
+						check = true;
+					}
+				}
+			}
+			if (!check) {
+				continue;
+				//temp = i;
+			}
+			rankArray[temp] = place;
+			place++;
+			check = false;
 
-   str[x] = '\0';
+		}
+	}
+	for (unsigned int i = 0; i < SIZE; i++) {
+		if (rankArray[i] == 0) {
+			rankArray[i] = 9;
+		}
+	}
 
 }
 
+
 int main() {
-   char str[] = " a ayad a ";
-   trim(str);
-   cout << str;
+   unsigned int rank[SIZE];
+   /*double score[] = {
+32.7,
+36.5,
+45.8,
+52.34,
+76.45,
+33.4,
+38,
+50.1,
+60.34
+   }; */
+  // double score[] = {26, 20, 66, 44, 24, 85, 39, 46, 34};
+   //double score[] = {85, 65, 37, 61, 74, 93, 28, 97, 84};
+	double score[] = {56, 62, 27, 53, 63, 94, 50, 71, 31};
+   prep_unsigned_int_array(rank);
+   get_ranking(score, rank);
+   for (unsigned int i = 0; i < SIZE; i++) {
+      cout << rank[i] << " ";
+   }
    return 0;
 }
 
 
 
 
-/*
-bool check = false;
-   int index = strlen(str);
-   // getting rear of string
-   int j = strlen(str) - 1;
-   if ((str[(strlen(str) - 1)] == ' ') || (str[(strlen(str) - 1)] == '\t')) {
-      while ((str[j] == ' ') || (str[(strlen(str) - 1)] == '\t')) {
-         j--;
-      }
-      str[j - 1] = '\0';
-      check = true;
-   }
-
-	// find first index
-   if (str[0] == ' ') {
-      int i = 0;
-      while ((str[i] == ' ') || (str[i] == '\t')) {
-         i++;
-      }
-
-      if (!check) {
-         index = j + 1;
-      }
-      
-      // shift string
-      for (int x = 0; x < index; x++) {
-         str[x] = str[i];
-         i++;
-      }
-   }
-*/

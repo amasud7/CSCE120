@@ -86,19 +86,19 @@ bool get_runner_data(double timeArray[], char countryArray[][STRING_SIZE],
 		unsigned int numberArray[], char lastnameArray[][STRING_SIZE]) {
   //TODO
   //validate data
-	for (int i = 0; i < SIZE; i++) {
+	for (unsigned int i = 0; i < SIZE; i++) {
 		cin >> timeArray[i] >> countryArray[i] >> numberArray[i] >> lastnameArray[i];
 
 		if (timeArray[i] <= 0) {
 			return false;
 		}
 
-		if ((numberArray[i] <= 0) || (numberArray[i] > 99)) {
+		if ((numberArray[i] > 99)) {
 			return false;
 		}
 
 		int count = 0;
-		for (int j = 0; j < strlen(countryArray[i]); j++) {
+		for (size_t j = 0; j < strlen(countryArray[i]); j++) {
 			count++;
 			if ((!(isupper(countryArray[i][j]))) || (!(isalpha(countryArray[i][j])))) {
 				return false;
@@ -110,7 +110,7 @@ bool get_runner_data(double timeArray[], char countryArray[][STRING_SIZE],
 
 		trim(lastnameArray[i]);
 		if (strlen(lastnameArray[i]) > 1) {
-			for (int k = 0; k < strlen(lastnameArray[i]); k++) {
+			for (size_t k = 0; k < strlen(lastnameArray[i]); k++) {
 				if ((!(isalpha(lastnameArray[i][k])))) {
 					if ((!(isspace(lastnameArray[i][k])))) {
 						return false;
@@ -131,9 +131,40 @@ bool get_runner_data(double timeArray[], char countryArray[][STRING_SIZE],
 // PostCondition: after a very inefficient nested loop to determine the placements 
 // and places the ranks in a new array. That new array is returned
 //---------------------------------------------------------
-void get_ranking(const double timeArray[], unsigned int rankArray[])
-{
+void get_ranking(const double timeArray[], unsigned int rankArray[]) {
 	//TODO
+	int min;
+	int place = 1;
+	unsigned int j;
+	int temp = 0;
+	bool check = false;
+	for (unsigned int c = 0; c < SIZE; c++) {
+		for (unsigned int i = 0; i < SIZE; i++) {
+			min = timeArray[i];
+			for (j = 0; j < SIZE; j++) {
+				if (rankArray[j] == 0) {
+					if (timeArray[j] <= min) {
+						min = timeArray[j];
+						temp = j;
+						check = true;
+					}
+				}
+			}
+			if (!check) {
+				continue;
+				//temp = i;
+			}
+			rankArray[temp] = place;
+			place++;
+			check = false;
+
+		}
+	}
+	for (unsigned int i = 0; i < SIZE; i++) {
+		if (rankArray[i] == 0) {
+			rankArray[i] = 9;
+		}
+	}
 }
 
 
@@ -152,7 +183,7 @@ void print_results(const double timeArray[], const char countryArray[][STRING_SI
 	double best_time = 0.0;
 		
 	// print the results, based on rank, but measure the time difference_type
-	for(unsigned int j = 1; j <= SIZE; j++)
+	for (unsigned int j = 1; j <= SIZE; j++)
 	{
 		
 		// go thru each array, find who places in "i" spot
