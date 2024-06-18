@@ -89,7 +89,7 @@ bool get_runner_data(double timeArray[], char countryArray[][STRING_SIZE],
 	for (unsigned int i = 0; i < SIZE; i++) {
 		cin >> timeArray[i] >> countryArray[i] >> numberArray[i] >> lastnameArray[i];
 
-		if (timeArray[i] <= 0) {
+		if (timeArray[i] < 0) {
 			return false;
 		}
 
@@ -133,7 +133,7 @@ bool get_runner_data(double timeArray[], char countryArray[][STRING_SIZE],
 //---------------------------------------------------------
 void get_ranking(const double timeArray[], unsigned int rankArray[]) {
 	//TODO
-	int min;
+	double min;
 	int place = 1;
 	unsigned int j;
 	int temp = 0;
@@ -155,6 +155,13 @@ void get_ranking(const double timeArray[], unsigned int rankArray[]) {
 				//temp = i;
 			}
 			rankArray[temp] = place;
+			// check duplicates
+			for (unsigned int d = 0; d < SIZE; d++) {
+				if (timeArray[d] == timeArray[temp]) {
+					rankArray[d] = place;
+				}
+			}
+
 			place++;
 			check = false;
 

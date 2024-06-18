@@ -16,7 +16,7 @@ void prep_unsigned_int_array(unsigned int ary[])
 
 void get_ranking(const double timeArray[], unsigned int rankArray[]) {
 	//TODO
-	int min;
+	double min;
 	int place = 1;
 	unsigned int j;
 	int temp = 0;
@@ -38,6 +38,12 @@ void get_ranking(const double timeArray[], unsigned int rankArray[]) {
 				//temp = i;
 			}
 			rankArray[temp] = place;
+			// check duplicates
+			for (unsigned int d = 0; d < SIZE; d++) {
+				if (timeArray[d] == timeArray[temp]) {
+					rankArray[d] = place;
+				}
+			}
 			place++;
 			check = false;
 
@@ -54,7 +60,7 @@ void get_ranking(const double timeArray[], unsigned int rankArray[]) {
 
 int main() {
    unsigned int rank[SIZE];
-   /*double score[] = {
+   /* double score[] = {
 32.7,
 36.5,
 45.8,
@@ -65,13 +71,26 @@ int main() {
 50.1,
 60.34
    }; */
-  // double score[] = {26, 20, 66, 44, 24, 85, 39, 46, 34};
+    //double score[] = {26, 20, 66, 44, 24, 85, 39, 46, 34};
+   //double score[] = {3, 3, 3};
    //double score[] = {85, 65, 37, 61, 74, 93, 28, 97, 84};
-	double score[] = {56, 62, 27, 53, 63, 94, 50, 71, 31};
+//double score[] = {56, 62, 27, 53, 63, 94, 50, 71, 31};
+	double score[] = {22.38, 22.09, 87, 29, 44, 70, 26, 20, 53};
    prep_unsigned_int_array(rank);
+   for (unsigned int i = 0; i < SIZE; i++) {
+      cout << rank[i] << " ";
+   }
+   cout << endl;
    get_ranking(score, rank);
    for (unsigned int i = 0; i < SIZE; i++) {
       cout << rank[i] << " ";
+   }
+   cout << endl;
+   if (22.38 > 22.09) {
+	cout << "false";
+   }
+   else if (22.38 < 22.09) {
+	cout << "true";
    }
    return 0;
 }
