@@ -65,7 +65,7 @@ void passwordConverter() {
     string pass;
     cout << "Please enter your text input: ";
     cin >> pass;
-    cout << "Input: " << pass;
+    cout << "input: " << pass << endl;
     for (unsigned int i = 0; i < pass.length(); i++) {
         if (pass[i] == 'a') {
             pass.replace(i, 1, "@");
@@ -73,9 +73,25 @@ void passwordConverter() {
         else if (pass[i] == 'e') {
             pass.replace(i, 1, "3");
         }
-        
+        else if (pass[i] == 'i') {
+            pass.replace(i, 1, "!");
+        }
+        else if (pass[i] == 'o') {
+            pass.replace(i, 1, "0");
+        }
+        else if (pass[i] == 'u') {
+            pass.replace(i, 1, "^");
+        }
 
     }
+    string c;
+    for (int j = (pass.length() - 1); j >= 0; j--) {
+        c += pass[j];
+    }
+    pass.append(c);
+    cout << "output: " << pass << endl;
+    //cout << pass;
+
 }
 
 void wordCalculator() {
