@@ -1,33 +1,50 @@
 #include <iostream>
 #include <cstring>
-# include <string>
+#include <string>
+#include <stdexcept>
 using namespace std;
 
 
 
-int SmarterSection(int A_correct, int A_total, int B_correct, int B_total) {
-	double a;
-    double b;
-	if (A_correct > A_total) {
-		return 5;
-	}
-	else if (B_correct > B_total) {
-		return 6;
-	}
-	else {
-		a = (A_correct / double(A_total)) * 100;
-    	b = (B_correct / double(B_total)) * 100;
-    	return 100;
-	}
 
-	
     
-}
+
 
 
 int main() {
-   cout << SmarterSection(101, 100, 75, 100);
-   return 1;
+	int a = 1;
+	int b = 10;
+	int count1 = 0;
+	int count2 = 0;
+	int cl = 0;
+	int value = 0;
+	try {
+		for (int n = a; n <= b; n++) {
+    		if (value >= 0 && n > 0 && n > INT32_MAX - value) {
+				count1++;
+				throw std::overflow_error("");
+			}
+			else if (value <= 0 && n < 0 && n < INT32_MIN - value) {
+				count2++;
+				throw std::overflow_error("");
+			}
+    		else {
+      			value = value + n;
+   			 }
+			 cl++;
+			 cout << value << endl;
+  		}
+		cout << value << endl;
+	}
+	catch(...) {
+		cout << "error" << endl;
+		cout << count1 << endl;
+		cout << count2 << endl;
+		cout << cl;
+	}
+
+	
+    return 1;
 }
 
 

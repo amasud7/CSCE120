@@ -1,4 +1,4 @@
-# include <stdexcept>
+#include <stdexcept>
 using namespace std;
 int Largest(int a, int b, int c) {
   int d = a;
@@ -77,46 +77,88 @@ bool GoodDinner(int pizzas, bool is_weekend) {
 }
 
 int SumBetween(int low, int high) {
-  int value = 0;
+  long long value = 0;
 
   if (low > high) {
     throw std::invalid_argument("");
   }
 
-  for (int n = low; n <= high; n++) {
-    if (value > INT32_MAX - n) {
-      throw std::overflow_error("");
-    }
-    else if (value < INT32_MIN + n) {
-      throw std::overflow_error("");
-    }
-    
-    else if ((low > 0) && (high > 0) && (value < 0)) {
-      throw std::overflow_error("");
-    }
-    else if ((low < 0) && (high < 0) && (value > 0)) {
-      throw std::overflow_error("");
-    }
-    
-    else if (low == INT32_MIN && high == INT32_MAX) {
-      return INT32_MIN;
-    }
-    value += n;
+  if (low == INT32_MIN && high == INT32_MAX) {
+    return INT32_MIN;
   }
 
-  return value;
+  long long l = static_cast<long long>(low);
+  long long h = static_cast<long long>(high);
+
+  for (long long n = l; n <= h; n++) {
+    if (value > INT32_MAX || value < INT32_MIN) {
+      throw std::overflow_error("");
+    }
+    value = value + n;
+  }
+    
+
+    
+  
+  return static_cast<int>(value);
 }
 
 int Product(int a, int b) {
-
-  if ((a > 0) && (b > 0) && (a > INT32_MAX - b)) {
+  if (a > 0 && b > 0 && a > (INT32_MAX / b)) {
     throw std::overflow_error("");
   }
-  else if ((a < 0) && (b < 0) && (a < INT32_MAX - b)) {
+  if (a > 0 && b < 0 && b < (INT32_MIN / a)) {
     throw std::overflow_error("");
   }
-  else {
-    return a * b;
+  if (a < 0 && b > 0 && a < (INT32_MIN / b)) {
+    throw std::overflow_error("");
+  } 
+  if (a < 0 && b < 0 && a < (INT32_MAX / b)) {
+    throw std::overflow_error("");
   }
-
+  return a * b;
 }
+
+/*
+    if (value > 0 && n > 0 && n > INT32_MAX - value) {
+			throw std::overflow_error("");
+		}
+		if (value < 0 && n < 0 && n < INT32_MIN - value) {
+			throw std::overflow_error("");
+		}
+
+
+
+
+
+
+    if (value > 0 && n > 0 && n >= INT32_MAX - value) {
+			throw std::overflow_error("");
+		}
+		else if (value < 0 && n < 0 && n <= INT32_MIN - value) {
+			throw std::overflow_error("");
+		}
+    else if (value < 0 && n > 0 && n >= INT32_MAX + value) {
+      throw std::overflow_error("");
+    }
+    else if (value > 0 && n < 0) {
+      throw std::overflow_error("");
+    }
+    else {
+    */
+
+
+
+
+
+   /*
+    int a = value;
+    int b = n;
+    if ((b > 0) && (a > INT32_MAX - b)) {
+      throw std::overflow_error("");
+    }
+    if ((b < 0) && (a < INT32_MIN - b)) {
+      throw std::overflow_error("");
+    }
+    */
+   //  value = a + b;
