@@ -1,0 +1,15 @@
+Evaluate shiftQuadrant problem
+
+input is shiftQuadrant(x=8, y=-1)
+
+Step 1:
+inputX = 8    inputY = -1    Quadrant 1 = 0  Quadrant 2 = 0  Quadrant 3 = 0  Quadrant 4 = 0
+
+Step 2:
+inputX = 8    inputY = 1    Quadrant 1 = 0  Quadrant 2 = 0  Quadrant 3 = 0  Quadrant 4 = 0
+
+Step 3:
+inputX = 8    inputY = 1    Quadrant 1 = 1  Quadrant 2 = 0  Quadrant 3 = 0  Quadrant 4 = 0
+
+Final Output:
+Quadrant 1 Along X axis
