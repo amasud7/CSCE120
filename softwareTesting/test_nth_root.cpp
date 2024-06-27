@@ -1,11 +1,85 @@
 #include <iostream>
 #include <cmath>
 #include "./nth_root.h"
+#include "test_helpers.h"
 
 int main() {
     {   // MINIMUM REQUIREMENT (for this lab)
         // just call the function with various values of n and x
-        nth_root(2, 1);
+        try {
+            nth_root(2, 1);
+        }
+        catch(...) {}
+        
+        try {
+            nth_root(0, 1);
+        }
+        catch(...) {}
+
+         try {
+            nth_root(2, -1);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(-2, 0);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(1, 1);
+        }
+        catch(...) {}
+        
+        try {
+            nth_root(-1, 1);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(-6, 1);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(-3, 1);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(6, 1);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(3, 1);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(2, 0);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(3, -2);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(1, 3);
+        }
+        catch(...) {}
+
+        try {
+            nth_root(1, 0.5);
+        }
+        catch(...) {}
+
+        
+
+
+
     }
 
     {   // TRY HARD
